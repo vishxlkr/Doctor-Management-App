@@ -4,3 +4,11 @@
    background-color: black;
    color: white;
 } */
+
+@theme {
+   --color-primary: #5044e5;
+}
+
+.active hr {
+   @apply block;
+}
