@@ -7,6 +7,8 @@ import MyAppointments from "./pages/MyAppointments";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Appointment from "./pages/Appointment";
+import Navbar from "./components/Navbar";
+import Contact from "./pages/Contact";
 
 const App = () => {
    return (
