@@ -6,7 +6,9 @@ const Navbar = () => {
       <div>
          <img src={assets.logo} alt="" />
          <ul>
-            <NavLink>home</NavLink>
+            <NavLink>
+               <li>HOME</li>
+            </NavLink>
          </ul>
       </div>
    );
