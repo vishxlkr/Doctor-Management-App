@@ -1,13 +1,18 @@
-@import "tailwindcss";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@theme {
+:root {
    --color-primary: #5044e5;
    --template-grid-cols-auto: repeat(auto-fill, minmax(200px, 1fr));
 }
+
+/* Tailwind @apply works only inside classes */
 .active hr {
    @apply block;
 }
 
+/* Standard CSS for pseudo-elements */
 ::-webkit-scrollbar {
-   @apply hidden;
+   display: none;
 }
