@@ -19,7 +19,9 @@ const TopDoctors = () => {
                         <p>Available</p>
                      </div>
 
-                     <p>{item.name}</p>
+                     <p className="text-gray-900 text-lg font-medium ">
+                        {item.name}
+                     </p>
 
                      <p>{item.speciality}</p>
                   </div>
