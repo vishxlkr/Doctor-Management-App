@@ -9,11 +9,13 @@ import Login from "./pages/Login";
 import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Contact from "./pages/Contact";
+import Portfolio from "./pages/Portfolio";
 
 const App = () => {
    return (
       <div className="mx-4 sm:mx-[10%]">
          <Navbar />
+         <Portfolio />
          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/doctors" element={<Doctors />} />
