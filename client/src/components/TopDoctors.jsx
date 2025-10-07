@@ -1,4 +1,4 @@
-import React, { useContext, useContext } from "react";
+import React, { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
@@ -36,7 +36,13 @@ const TopDoctors = () => {
                </div>
             ))}
          </div>
-         <button className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10 cursor-pointer hover:bg-blue-100 transition">
+         <button
+            onClick={() => {
+               navigate("/doctors");
+               scrollTo(0, 0);
+            }}
+            className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10 cursor-pointer hover:bg-blue-100 transition"
+         >
             More
          </button>
       </div>
