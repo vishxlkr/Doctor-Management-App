@@ -1,8 +1,6 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 
-:root {
+@theme {
    --color-primary: #5044e5;
    --template-grid-cols-auto: repeat(auto-fill, minmax(200px, 1fr));
 }
