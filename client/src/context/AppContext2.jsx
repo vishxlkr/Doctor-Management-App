@@ -3,7 +3,8 @@
 // Step 1 — Create the Context
 import { createContext } from "react";
 export const AppContext = createContext();              
-// this is like a open box where we will store the data and also access the data.So we will use this inside the contextProvider function also. and then whenever we will use the Usecontext. 
+// this is like a open box where we will store the data and also access the data.
+// So we will use this inside the contextProvider function also. and then whenever we will use the Usecontext. 
 
 // Step 2 — Create a Provider Component
 const ContextProvider = (props) => {
@@ -31,6 +32,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <App />
    </ContextProvider>
 );
+
+
+
+
+
 
 // Step 4 — Use the Shared Data Anywhere
 import React, { useContext } from "react";
