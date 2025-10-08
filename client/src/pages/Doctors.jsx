@@ -26,7 +26,7 @@ const Doctors = () => {
       <div>
          <p className="text-gray-600">Browse through the doctors specialist.</p>
          <div className="flex flex-col sm:flex-row items-start gap-5 m-5">
-            <div className="flex flex-col gap-4 text-sm text-gray-600 className = 'sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded  transition-all cursor-pointer'">
+            <div className="flex flex-col gap-4 text-sm text-gray-600 ">
                <p
                   onClick={() =>
                      setFilterDoc === "General physician"
