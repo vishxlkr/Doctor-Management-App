@@ -6,4 +6,4 @@ const addDoctor = async (req, res) => {
 };
 
 
-git quickgit quickgit quick
+git quickgit quickgit quickgit quick
