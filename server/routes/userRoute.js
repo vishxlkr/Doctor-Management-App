@@ -18,7 +18,6 @@ userRouter.post(
    "/update-profile",
    authUser,
    upload.single("image"),
-
    updateProfile
 );
 
