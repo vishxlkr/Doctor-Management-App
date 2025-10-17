@@ -46,10 +46,10 @@ const addDoctor = async (req, res) => {
       }
 
       // validating strong password
-      if (!password.length < 8) {
+      if (password.length < 8) {
          return res.json({
             success: false,
-            message: "Please enter a strong password",
+            message: "Please must be atleast 8 characters long",
          });
       }
 
@@ -74,10 +74,11 @@ const addDoctor = async (req, res) => {
          about,
          fees,
          address: JSON.parse(address),
+         available: true,
          date: Date.now(),
       };
 
-      const newDoctor = new doctorData(doctorData);
+      const newDoctor = new doctorModel(doctorData);
       await newDoctor.save();
 
       res.json({ success: true, message: "Doctor Added" });
