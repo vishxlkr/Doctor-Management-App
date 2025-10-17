@@ -29,7 +29,6 @@ const AddDoctor = () => {
          }
 
          const formData = new FormData();
-
          formData.append("image", docImg); // same field name as multer
          formData.append("name", name);
          formData.append("email", email);
@@ -44,12 +43,8 @@ const AddDoctor = () => {
             JSON.stringify({ line1: address1, line2: address2 })
          );
 
-         // console.log form data
-         // formData.forEach((value, key) => {
-         //    console.log(`${key}: ${value}`);
-         // });
-
-         const data = await axios.post(
+         // Send request
+         const { data } = await axios.post(
             backendUrl + "/api/admin/add-doctor",
             formData,
             { headers: { aToken } }
@@ -57,6 +52,8 @@ const AddDoctor = () => {
 
          if (data.success) {
             toast.success(data.message);
+
+            // Reset form
             setDocImg(false);
             setName("");
             setPassword("");
@@ -70,7 +67,8 @@ const AddDoctor = () => {
             toast.error(data.message);
          }
       } catch (error) {
-         toast.error(error.message);
+         // Handle Axios errors properly
+         toast.error(error.response?.data?.message || error.message);
          console.log(error);
       }
    };
