@@ -1,21 +1,10 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const MyProfile = () => {
-   // const [userData, setUserData] = useState({
-   //    name: "Edward Vincent",
-   //    image: assets.profile_pic,
-   //    email: "vishxlkr@gmail.com",
-   //    phone: "+91 6204820578",
-   //    address: {
-   //       line1: "57th Cross ,Richmond",
-   //       line2: "Cicle, Church Road , London",
-   //    },
-   //    gender: "Male",
-   //    dob: "2000-01-01",
-   // });
-
    const { userData, setUserData, token, backendUrl, loadUserProfileData } =
       useContext(AppContext);
 
@@ -31,7 +20,25 @@ const MyProfile = () => {
          formData.append("gender", userData.gender);
          formData.append("dob", userData.dob);
          image && formData.append("image", image);
-      } catch (error) {}
+
+         const { data } = await axios.post(
+            backendUrl + "/api/user/update-profile",
+            formData,
+            { headers: { token } }
+         );
+
+         if (data.success) {
+            toast.success(data.message);
+            await loadUserProfileData();
+            setIsEdit(false);
+            setImage(false);
+         } else {
+            toast.error(data.message);
+         }
+      } catch (error) {
+         console.log(error);
+         toast.error(error.message);
+      }
    };
 
    return (
@@ -45,12 +52,15 @@ const MyProfile = () => {
                         src={
                            image ? URL.createObjectURL(image) : userData.image
                         }
+                        alt="Profile"
                      />
-                     <img
-                        className="w-10 absolute bottom-12 right-12"
-                        src={image ? "" : assets.upload_icon}
-                        alt=""
-                     />
+                     {!image && (
+                        <img
+                           className="w-10 absolute bottom-12 right-12"
+                           src={assets.upload_icon}
+                           alt="Upload Icon"
+                        />
+                     )}
                   </div>
                   <input
                      onChange={(e) => setImage(e.target.files[0])}
@@ -85,7 +95,6 @@ const MyProfile = () => {
                </p>
                <div className="grid grid-cols-[1fr_3fr] gap-y-2.5 mt-3 text-neutral-700">
                   <p className="font-medium">Email id:</p>
-
                   <p className="text-blue-500">{userData.email}</p>
 
                   <p className="font-medium">Phone:</p>
@@ -108,28 +117,33 @@ const MyProfile = () => {
                   <p className="font-medium">Address: </p>
                   {isEdit ? (
                      <p>
+                        {/* ✅ FIXED: Preserve other address fields using spread operator */}
                         <input
                            className="bg-gray-200"
-                           value={userData.address.line1}
+                           type="text"
+                           value={userData.address?.line1 || ""}
                            onChange={(e) =>
                               setUserData((prev) => ({
                                  ...prev,
-                                 address,
-                                 line1: e.target.value,
+                                 address: {
+                                    ...prev.address, // <-- this line was missing
+                                    line1: e.target.value,
+                                 },
                               }))
                            }
-                           type="text"
                         />
                         <br />
                         <input
                            className="bg-gray-200"
                            type="text"
-                           value={userData.address.line2}
+                           value={userData.address?.line2 || ""}
                            onChange={(e) =>
                               setUserData((prev) => ({
                                  ...prev,
-                                 address,
-                                 line2: e.target.value,
+                                 address: {
+                                    ...prev.address,
+                                    line2: e.target.value,
+                                 },
                               }))
                            }
                         />
@@ -143,6 +157,7 @@ const MyProfile = () => {
                   )}
                </div>
             </div>
+
             <div>
                <p className="text-neutral-500 underline mt-3">
                   BASIC INFORMATION
@@ -160,12 +175,13 @@ const MyProfile = () => {
                            }))
                         }
                      >
-                        <option value="Male">Male</option>{" "}
+                        <option value="Male">Male</option>
                         <option value="Female">Female</option>
                      </select>
                   ) : (
                      <p className="text-gray-400">{userData.gender}</p>
                   )}
+
                   <p className="font-medium">Birthday : </p>
                   {isEdit ? (
                      <input
@@ -184,11 +200,12 @@ const MyProfile = () => {
                   )}
                </div>
             </div>
+
             <div className="mt-10">
                {isEdit ? (
                   <button
-                     className="border border-primary px-8 py-2 rounded-full hover:text-white hover:bg-primary transition-all "
-                     onClick={updateUserProfileData()}
+                     className="border border-primary px-8 py-2 rounded-full hover:text-white hover:bg-primary transition-all"
+                     onClick={updateUserProfileData}
                   >
                      Save Information
                   </button>
