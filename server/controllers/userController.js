@@ -118,4 +118,6 @@ const updateProfile = async (req, res) => {
    } catch (error) {}
 };
 
+//
+
 export { registerUser, loginUser, getProfile, updateProfile };
