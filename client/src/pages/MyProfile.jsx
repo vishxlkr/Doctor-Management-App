@@ -34,7 +34,7 @@ const MyProfile = () => {
       } catch (error) {}
    };
 
-   git quickgit quick
+   git quickgit quickgit quick
 
    return (
       userData && (
