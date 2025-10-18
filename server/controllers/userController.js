@@ -3,6 +3,7 @@ import bcrypt, { genSalt } from "bcrypt";
 import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
+import doctorModel from "../models/doctorModel.js";
 // api to register user
 const registerUser = async (req, res) => {
    try {
@@ -115,9 +116,22 @@ const updateProfile = async (req, res) => {
          await userModel.findByIdAndUpdate(userId, { image: imageURL });
       }
       res.json({ success: true, message: "Profile updated" });
-   } catch (error) {}
+   } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: error.message });
+   }
 };
 
-//
+// api to book appointment
+const bookAppointment = async (req, res) => {
+   try {
+      const userId = req.user.id;
+      const { docId, slotDate, slotTime } = req.body;
+      const docData = await doctorModel.findById(docId).select("-password");
+   } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: error.message });
+   }
+};
 
 export { registerUser, loginUser, getProfile, updateProfile };
