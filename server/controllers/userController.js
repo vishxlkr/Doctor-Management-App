@@ -235,7 +235,7 @@ const paymentRazorpay = (req,res) =>{
 
 }
 
-git quickgit quickgit quick
+git quickgit quickgit quickgit quick
 git quick
 export {
    registerUser,
