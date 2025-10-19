@@ -228,15 +228,14 @@ const cancelAppointment = async (req, res) => {
 };
 
 // api to make online payment of appointmnet using razorpay
-const razorpayInstance 
+const razorpayInstance
 const paymentRazorpay = (req,res) =>{
    
 
 
-}git quick
-git quick
-git quickgit quickgit quickgit quickgit quickgit quickgit quick
-export {git quick
+}
+
+export {
    registerUser,
    loginUser,
    getProfile,
