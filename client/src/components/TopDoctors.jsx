@@ -16,6 +16,7 @@ const TopDoctors = () => {
          <div className="w-full grid grid-cols-[var(--template-grid-cols-auto)] gap-4 pt-5 gap-y-6 px-3 sm:px-0">
             {doctors.slice(0, 10).map((item, index) => (
                <div
+                  key={item._id}
                   onClick={() => {
                      navigate(`/appointment/${item._id}`);
                      scrollTo(0, 0);
