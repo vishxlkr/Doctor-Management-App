@@ -68,6 +68,57 @@ const MyAppointments = () => {
       }
    };
 
+   //
+   const initPay = (order) => {
+      const options = {
+         key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+         amount: order.amount, // Amount is in currency subunits.
+         currency: order.currency,
+         name: "Appointment Payment", //your business name
+         description: "Appointment Payment",
+         // image: "https://example.com/your_logo",
+         order_id: order.id, // This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+         // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+         // prefill: {
+         //    //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+         //    name: "John Smith", //your customer's name
+         //    email: "john.smith@example.com",
+         //    contact: "+11234567890", //Provide the customer's phone number for better conversion rates
+         // },
+         // notes: {
+         //    address: "Razorpay Corporate Office",
+         // },
+         // theme: {
+         //    color: "#3399cc",
+         // },
+         receipt: order.receipt,
+         handler: async (response) => {
+            console.log(response);
+         },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+   };
+
+   // payment
+   const appointmentRazorpay = async (appointmentId) => {
+      try {
+         const { data } = await axios.post(
+            backendUrl + "/api/user/payment-razorpay",
+            { appointmentId },
+            { headers: { token } }
+         );
+
+         if (data.success) {
+            initPay(data.order);
+         }
+      } catch (error) {
+         console.log(error);
+         toast.error(error.message);
+      }
+   };
+
    useEffect(() => {
       if (token) {
          getUserAppointments();
@@ -110,7 +161,10 @@ const MyAppointments = () => {
                   <div></div>
                   <div className="flex flex-col gap-2 justify-end">
                      {!item.cancelled && (
-                        <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300">
+                        <button
+                           onClick={() => appointmentRazorpay(item._id)}
+                           className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300"
+                        >
                            Pay Online
                         </button>
                      )}
