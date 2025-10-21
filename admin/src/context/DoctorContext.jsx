@@ -22,11 +22,9 @@ const DoctorContextProvider = (props) => {
          );
 
          if (data.success) {
-            // setAppointments(data.appointments.reverse());
-            // console.log(data.appointments.reverse());
-            const reversed = [...data.appointments].reverse();
-            setAppointments(reversed);
-            console.log(reversed);
+            setAppointments(data.appointments);
+            console.log(data.appointments);
+            console.log("hello");
          } else {
             toast.error(data.message);
          }
