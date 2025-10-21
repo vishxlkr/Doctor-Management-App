@@ -74,12 +74,25 @@ const Navbar = () => {
                   </div>
                </div>
             ) : (
-               <button
-                  onClick={() => navigate("/login")}
-                  className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block"
-               >
-                  Create account
-               </button>
+               <>
+                  {/* Admin Login Button */}
+                  <button
+                     onClick={() =>
+                        window.open(import.meta.env.VITE_ADMIN_URL, "_blank")
+                     }
+                     className="bg-gray-800 text-white px-5 py-2 rounded-full font-light hidden md:block"
+                  >
+                     Admin Login
+                  </button>
+
+                  {/* User Create Account */}
+                  <button
+                     onClick={() => navigate("/login")}
+                     className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block"
+                  >
+                     Create account
+                  </button>
+               </>
             )}
             <img
                onClick={() => setShowMenu(true)}
