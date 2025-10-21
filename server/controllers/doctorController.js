@@ -146,4 +146,4 @@ export {
 
 
 git quickgit quickgit quickgit quickvgit quickgit quickgit quick
-git quick
+git quickgit quick
