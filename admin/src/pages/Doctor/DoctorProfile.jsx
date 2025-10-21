@@ -1,7 +1,7 @@
 import React from "react";
 
 const DoctorProfile = () => {
-   return <div>doctorprofile</div>;
+   return <div>doctor profile</div>;
 };
 
 export default DoctorProfile;
