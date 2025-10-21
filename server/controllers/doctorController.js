@@ -145,4 +145,4 @@ export {
 };
 
 
-git quickgit quickgit quickgit quickv
+git quickgit quickgit quickgit quickvgit quick
