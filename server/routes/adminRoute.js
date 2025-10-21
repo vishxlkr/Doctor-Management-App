@@ -21,3 +21,5 @@ adminRouter.get("/appointments", authAdmin, appointmentAdmin);
 adminRouter.post("/cancel-appointment", authAdmin, appointmentCancel);
 
 export default adminRouter;
+
+git quick
