@@ -22,4 +22,4 @@ adminRouter.post("/cancel-appointment", authAdmin, appointmentCancel);
 
 export default adminRouter;
 
-git quickgit quick
+git quickgit quickgit quick
