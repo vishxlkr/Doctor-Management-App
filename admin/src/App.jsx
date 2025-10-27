@@ -55,4 +55,4 @@ const App = () => {
 
 export default App;
 
-git quickgit quick
+git quickgit quickgit quick
